@@ -59,7 +59,7 @@ public final class Label extends AndroidViewComponent {
   private int backgroundColor;
 
   // Backing for font typeface
-  private int fontTypeface;
+  private String fontTypeface;
 
   // Backing for font bold
   private boolean bold;
@@ -112,7 +112,7 @@ public final class Label extends AndroidViewComponent {
     TextAlignment(Component.ALIGNMENT_NORMAL);
     BackgroundColor(Component.COLOR_NONE);
     fontTypeface = Component.TYPEFACE_DEFAULT;
-    TextViewUtil.setFontTypeface(view, fontTypeface, bold, italic);
+    TextViewUtil.setFontTypeface(container.$form(), view, fontTypeface, bold, italic);
     FontSize(Component.FONT_DEFAULT_SIZE);
     Text("");
     TextColor(Component.COLOR_DEFAULT);
@@ -222,7 +222,7 @@ public final class Label extends AndroidViewComponent {
       userVisible = false)
   public void FontBold(boolean bold) {
     this.bold = bold;
-    TextViewUtil.setFontTypeface(view, fontTypeface, bold, italic);
+    TextViewUtil.setFontTypeface(container.$form(), view, fontTypeface, bold, italic);
   }
 
   /**
@@ -251,7 +251,7 @@ public final class Label extends AndroidViewComponent {
       userVisible = false)
   public void FontItalic(boolean italic) {
     this.italic = italic;
-    TextViewUtil.setFontTypeface(view, fontTypeface, bold, italic);
+    TextViewUtil.setFontTypeface(container.$form(), view, fontTypeface, bold, italic);
   }
 
   /**
@@ -327,7 +327,7 @@ private void setLabelMargins(boolean hasMargins) {
   @SimpleProperty(
       category = PropertyCategory.APPEARANCE,
       userVisible = false)
-  public int FontTypeface() {
+  public String FontTypeface() {
     return fontTypeface;
   }
 
@@ -344,9 +344,9 @@ private void setLabelMargins(boolean hasMargins) {
       defaultValue = Component.TYPEFACE_DEFAULT + "")
   @SimpleProperty(
       userVisible = false)
-  public void FontTypeface(int typeface) {
+  public void FontTypeface(String typeface) {
     fontTypeface = typeface;
-    TextViewUtil.setFontTypeface(view, fontTypeface, bold, italic);
+    TextViewUtil.setFontTypeface(container.$form(), view, fontTypeface, bold, italic);
   }
 
   /**
