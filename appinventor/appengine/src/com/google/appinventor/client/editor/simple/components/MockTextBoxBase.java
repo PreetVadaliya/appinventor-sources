@@ -124,7 +124,7 @@ abstract class MockTextBoxBase extends MockWrapper {
    * Sets the textbox's FontTypeface property to a new value.
    */
   private void setFontTypefaceProperty(String text) {
-    MockComponentsUtil.setWidgetFontTypeface(textBoxWidget, text);
+    MockComponentsUtil.setWidgetFontTypeface(this.editor, textBoxWidget, text);
     updatePreferredSize();
   }
 
@@ -185,6 +185,9 @@ abstract class MockTextBoxBase extends MockWrapper {
       refreshForm();
     } else if (propertyName.equals(PROPERTY_NAME_TEXTCOLOR)) {
       setTextColorProperty(newValue);
+    } else if (propertyName.equals(PROPERTY_NAME_WIDTH)) {
+      MockComponentsUtil.updateTextAppearances(textBoxWidget, newValue);
+      refreshForm();
     }
   }
 }

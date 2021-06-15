@@ -9,6 +9,8 @@ package com.google.appinventor.client.editor.simple.components;
 import static com.google.appinventor.client.Ode.MESSAGES;
 import com.google.appinventor.client.editor.simple.SimpleEditor;
 import com.google.gwt.safehtml.shared.SimpleHtmlSanitizer;
+import com.google.gwt.user.client.DOM;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.InlineHTML;
 
 /**
@@ -91,7 +93,7 @@ public final class MockLabel extends MockVisibleComponent {
    * Sets the label's FontTypeface property to a new value.
    */
   private void setFontTypefaceProperty(String text) {
-    MockComponentsUtil.setWidgetFontTypeface(labelWidget, text);
+    MockComponentsUtil.setWidgetFontTypeface(this.editor, labelWidget, text);
   }
 
   /*
@@ -154,6 +156,9 @@ public final class MockLabel extends MockVisibleComponent {
       // Just need to re-set the saved text so it is displayed
       // either as HTML or text as appropriate
       setTextProperty(savedText);
+      refreshForm();
+    } else if (propertyName.equals(PROPERTY_NAME_WIDTH)) {
+      MockComponentsUtil.updateTextAppearances(labelWidget, newValue);
       refreshForm();
     }
   }
